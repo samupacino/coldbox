@@ -84,13 +84,18 @@
             $sql = "SELECT plataformas.nombre AS platform 
                     FROM instrumentos 
                     JOIN plataformas ON instrumentos.plataforma = plataformas.id 
-                    WHERE instrumentos.nombre = ? LIMIT 1";
-
+                    WHERE instrumentos.nombre REGEXP ?";
+            
 
             $conexion = new Conexion('localhost', 'PlataformaDB', 'root', 'samuellujan1989');
-            $nombre = $_GET['nombre'];
+   
 
-            $datos = [$nombre];
+            $buscar_tag = $_GET['nombre'];
+            $buscar_tag = trim($buscar_tag);
+            $buscar_tag = str_replace('-','',$buscar_tag);
+            $buscar_tag = '^'.implode('-?',str_split($buscar_tag)).'$';
+            
+            $datos = [$buscar_tag];
 
             $resultado = $conexion->obtenerFilas($sql,$datos);
 

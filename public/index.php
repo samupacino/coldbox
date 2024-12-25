@@ -103,6 +103,10 @@
         session_destroy();
         header("Location: index.php");
 
+    }else if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['t155'])) {
+
+        echo json_encode(['TEST'=>'FUNCIONA']);
+
     }else{
 
         session_unset();

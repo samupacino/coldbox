@@ -16,7 +16,7 @@ CREATE TABLE plataformas (
 
 CREATE TABLE instrumentos (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    plataforma INT NOT NULL,
+    plataforma INT NOT NULL UNIQUE,
     nombre VARCHAR(255) NOT NULL,
     FOREIGN KEY (plataforma) REFERENCES plataformas(id)
 );
@@ -34,7 +34,7 @@ INSERT INTO plataformas (id,nombre) VALUES
 
 INSERT INTO usuarios (username, password, rol) 
 VALUES 
-('makens', MD5('makens'), 'admin');
+('makens', MD5('makens'), 'admin'),
 ('admin', MD5('admin123'), 'admin'), 
 ('guest', MD5('guest123'), 'invitado');
 

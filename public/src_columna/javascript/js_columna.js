@@ -48,13 +48,27 @@ function logout() {
 function closeModal() {
     document.querySelector('.modal.active').classList.remove('active');
 }
+function validateInput(name) {
+    const regex = /^[a-zA-Z]+(?:-[a-zA-Z0-9]+)*$/;
 
+
+    if (regex.test(name)) {
+      return true;
+    } else {
+        document.getElementById('instrument').value = "";
+        alert('Entrada inválida');
+        return false;
+    }
+  }
 document.getElementById('instrument-form').addEventListener('submit', function (e) {
     e.preventDefault();
     var datos = new FormData(document.getElementById('instrument-form'));
 
-    //const name = document.getElementById('instrument').value.trim();
-    
+   if(!validateInput(datos.get('nombre').trim())){
+
+        return;
+   }
+
     datos.append('action','add');
     datos.append('plataforma',currentPlatform);
 
@@ -85,6 +99,7 @@ function deleteInstrument(id) {
         body: `action=delete&id=${id}`
     }).then(() => showOptions(currentPlatform));
 }
+
 function searchInstrument() {
     const query = document.getElementById('search-input').value.trim();
     if (!query) {
