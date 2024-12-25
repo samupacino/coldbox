@@ -60,32 +60,34 @@ function validateInput(name) {
         return false;
     }
   }
-  if(document.getElementById('instrument-form')){
-        document.getElementById('instrument-form').addEventListener('submit', function (e) {
-            e.preventDefault();
+
+// Delegación de eventos para el formulario
+function registro_instrumento(){
+    document.addEventListener('submit', function (event) {
+        // Verifica que el evento se origine en el formulario dinámico
+
+        if (event.target && event.target.matches('#instrument-form')) {
+            event.preventDefault(); // Evita el envío por defecto del formulario
+            
             var datos = new FormData(document.getElementById('instrument-form'));
 
-        if(!validateInput(datos.get('nombre').trim())){
-
+            if(!validateInput(datos.get('nombre').trim())){
                 return;
-        }
-
+            }
             datos.append('action','add');
             datos.append('plataforma',currentPlatform);
 
             fetch('index.php', {
-                
                 method: 'POST',
                 //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 //body: `action=add&plataforma=${currentPlatform}&nombre=${name}`
                 body: datos
             }).then(() => showOptions(currentPlatform));
-
-
             document.getElementById('instrument').value = "";
-        });
-    }
-
+            // Aquí puedes realizar otras acciones, como enviar datos mediante fetch
+        }
+    });
+}
 function editInstrument(id, newName) {
     fetch('index.php', {
         method: 'POST',
@@ -160,7 +162,7 @@ return fetch('index.php?action=getUserRole')
 
 function seleccion_planta(){
     var seleccion =  document.getElementById('columna_pisco');
-    
+
     seleccion.addEventListener('click',function(event){
         event.preventDefault();
 
@@ -173,9 +175,11 @@ function seleccion_planta(){
     });
 }
 
+
+
+
+
 window.onload =function(){
+    registro_instrumento();
     seleccion_planta();
 }
-
-
-

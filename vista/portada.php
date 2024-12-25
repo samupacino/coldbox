@@ -39,7 +39,7 @@
 
     <script src="src_columna/javascript/js_columna.js?v=<?php echo time();?>"></script>
     <script>
-     
+
     </script>
 </body>
 </html>
