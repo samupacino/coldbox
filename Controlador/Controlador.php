@@ -136,6 +136,11 @@
             return require_once'../vista/portada.php';
 
         }
+        public function coldboxpisco(){
+
+            return require_once'../vista/coldboxpisco.php';
+
+        }
     }
 
 ?>

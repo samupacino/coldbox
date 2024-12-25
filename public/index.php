@@ -104,8 +104,10 @@
         header("Location: index.php");
 
     }else if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['t155'])) {
-
-        echo json_encode(['TEST'=>'FUNCIONA']);
+        ob_start();   
+        $controlador->coldboxpisco();
+        $coldbox = ob_get_clean();
+        echo $coldbox;
 
     }else{
 

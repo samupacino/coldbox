@@ -60,29 +60,31 @@ function validateInput(name) {
         return false;
     }
   }
-document.getElementById('instrument-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var datos = new FormData(document.getElementById('instrument-form'));
+  if(document.getElementById('instrument-form')){
+        document.getElementById('instrument-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var datos = new FormData(document.getElementById('instrument-form'));
 
-   if(!validateInput(datos.get('nombre').trim())){
+        if(!validateInput(datos.get('nombre').trim())){
 
-        return;
-   }
+                return;
+        }
 
-    datos.append('action','add');
-    datos.append('plataforma',currentPlatform);
+            datos.append('action','add');
+            datos.append('plataforma',currentPlatform);
 
-    fetch('index.php', {
-        
-        method: 'POST',
-        //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        //body: `action=add&plataforma=${currentPlatform}&nombre=${name}`
-        body: datos
-    }).then(() => showOptions(currentPlatform));
+            fetch('index.php', {
+                
+                method: 'POST',
+                //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                //body: `action=add&plataforma=${currentPlatform}&nombre=${name}`
+                body: datos
+            }).then(() => showOptions(currentPlatform));
 
 
-    document.getElementById('instrument').value = "";
-});
+            document.getElementById('instrument').value = "";
+        });
+    }
 
 function editInstrument(id, newName) {
     fetch('index.php', {
@@ -155,4 +157,25 @@ return fetch('index.php?action=getUserRole')
     return null;
 });
 }
+
+function seleccion_planta(){
+    var seleccion =  document.getElementById('columna_pisco');
+    
+    seleccion.addEventListener('click',function(event){
+        event.preventDefault();
+
+        fetch('index.php?t155')
+        .then(response => response.text())
+        .then(data =>{
+       
+            document.querySelector('.body-text').innerHTML = data;
+        })
+    });
+}
+
+window.onload =function(){
+    seleccion_planta();
+}
+
+
 
