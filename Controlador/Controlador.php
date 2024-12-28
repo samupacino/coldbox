@@ -136,9 +136,9 @@
             return require_once'../vista/portada.php';
 
         }
-        public function coldboxpisco(){
+        public function coldboxcajamarquilla(){
 
-            return require_once'../vista/coldboxpisco.php';
+            return require_once'../vista/coldboxcajamarquilla.php';
 
         }
     }

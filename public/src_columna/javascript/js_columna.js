@@ -1,7 +1,12 @@
-let currentPlatform = null;
+//let currentPlatform = null;
 
 function showOptions(platformId) {
-    currentPlatform = platformId;
+    //currentPlatform = platformId;
+
+    var plataforma_actual =  document.getElementById('modal-register');
+    plataforma_actual.setAttribute('name',platformId);
+
+
     fetch(`index.php?plataforma=${platformId}`)// fetch(`server.php?plataforma=${platformId}`)
         .then(response => response.json())
         .then(data => {
@@ -10,13 +15,10 @@ function showOptions(platformId) {
                 const list = document.getElementById('instrument-list');
                 list.innerHTML = '';
                 data.instrumentos.forEach(inst => {
-               
-                    
                     const li = document.createElement('li');
                     li.innerHTML = `
-                        <input type="text" value="${inst.nombre}" onchange="editInstrument(${inst.id}, this.value)">
-                        <button onclick="deleteInstrument(${inst.id})">Eliminar</button>
-                    `;
+                        <input type="text" id="edit_value" value="${inst.nombre}" onchange="editInstrument(${inst.id}, this.value)">
+                        <button onclick="deleteInstrument(${inst.id})">Eliminar</button>`;
                     list.appendChild(li);
                 });
                 document.getElementById('modal-register').classList.add('active');
@@ -46,16 +48,19 @@ function logout() {
     ajax.send();
 }
 function closeModal() {
+    var inputElement = document.getElementById('modal-register');
+    inputElement.removeAttribute('name');
+
     document.querySelector('.modal.active').classList.remove('active');
 }
 function validateInput(name) {
-    const regex = /^[a-zA-Z]+(?:-[a-zA-Z0-9]+)*$/;
+    const regex = /^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/;
 
 
     if (regex.test(name)) {
       return true;
     } else {
-        document.getElementById('instrument').value = "";
+        
         alert('Entrada inválida');
         return false;
     }
@@ -65,6 +70,8 @@ function validateInput(name) {
 function registro_instrumento(){
     document.addEventListener('submit', function (event) {
         // Verifica que el evento se origine en el formulario dinámico
+        var currentPlatform =  document.getElementById('modal-register').getAttribute('name');
+       
 
         if (event.target && event.target.matches('#instrument-form')) {
             event.preventDefault(); // Evita el envío por defecto del formulario
@@ -72,6 +79,7 @@ function registro_instrumento(){
             var datos = new FormData(document.getElementById('instrument-form'));
 
             if(!validateInput(datos.get('nombre').trim())){
+                document.getElementById('instrument').value = "";
                 return;
             }
             datos.append('action','add');
@@ -89,6 +97,11 @@ function registro_instrumento(){
     });
 }
 function editInstrument(id, newName) {
+
+    if(!validateInput(newName.trim())){
+        
+        return;
+    }
     fetch('index.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -97,6 +110,7 @@ function editInstrument(id, newName) {
 }
 
 function deleteInstrument(id) {
+    var currentPlatform =  document.getElementById('modal-register').getAttribute('name');
     fetch('index.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -124,23 +138,25 @@ function searchInstrument() {
         });
         document.getElementById('search-input').value = "";
 }
-document.addEventListener('DOMContentLoaded', async () => {
-// Llama a la función para obtener el rol del usuario
-const userRole = await getUserRole();
-
-if (userRole === 'invitado') {
-// Restringe acciones para usuarios invitados
-document.getElementById('instrument-form').style.display = 'none';
-document.querySelectorAll('.crud-button').forEach(btn => btn.style.display = 'none');
-} else if (userRole === 'admin') {
-// Admin tiene acceso completo
-console.log("Usuario con permisos completos.");
-} else {
-// Si no hay rol o no está autenticado
-alert("No tienes permisos para acceder a esta página.");
-window.location.href = 'index.php';
+function registro_instrumentos(){
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Llama a la función para obtener el rol del usuario
+        const userRole = await getUserRole();
+        
+        if (userRole === 'invitado') {
+        // Restringe acciones para usuarios invitados
+        document.getElementById('instrument-form').style.display = 'none';
+        document.querySelectorAll('.crud-button').forEach(btn => btn.style.display = 'none');
+        } else if (userRole === 'admin') {
+        // Admin tiene acceso completo
+        console.log("Usuario con permisos completos.");
+        } else {
+        // Si no hay rol o no está autenticado
+        alert("No tienes permisos para acceder a esta página.");
+        window.location.href = 'index.php';
+        }
+    });
 }
-});
 
 // Función para obtener el rol del usuario actual
 function getUserRole() {
@@ -161,7 +177,7 @@ return fetch('index.php?action=getUserRole')
 }
 
 function seleccion_planta(){
-    var seleccion =  document.getElementById('columna_pisco');
+    var seleccion =  document.getElementById('columna_cajamarquilla');
 
     seleccion.addEventListener('click',function(event){
         event.preventDefault();
@@ -175,11 +191,8 @@ function seleccion_planta(){
     });
 }
 
-
-
-
-
 window.onload =function(){
+    registro_instrumentos()
     registro_instrumento();
     seleccion_planta();
 }

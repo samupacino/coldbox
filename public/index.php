@@ -105,7 +105,7 @@
 
     }else if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['t155'])) {
         ob_start();   
-        $controlador->coldboxpisco();
+        $controlador->coldboxcajamarquilla();
         $coldbox = ob_get_clean();
         echo $coldbox;
 
