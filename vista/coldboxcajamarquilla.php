@@ -1,8 +1,4 @@
 
-
-
-
-
     <div class="search-container">
         <input type="text" id="search-input" placeholder="Buscar instrumento">
         <button onclick="searchInstrument()">Buscar</button>

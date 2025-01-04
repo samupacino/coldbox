@@ -1,14 +1,25 @@
+
 <?php
-   
+
+
     session_start();
     
     include_once'../Controlador/Controlador.php';
     
     $controlador = new Controlador();
 
+    /*
+    $uri = $_SERVER['REQUEST_URI'];
+    $uri = trim($uri,'/');
+    $method = $_SERVER['REQUEST_METHOD'];
+    echo $_GET['samuel'];
+    echo '</br>';
+    echo  $uri;*/
+    
+    
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getUserRole') {
-        
+   
         if (!isset($_SESSION['user_id'])) {
             echo json_encode(["error" => "No has iniciado sesión."]);
             exit;
@@ -30,16 +41,18 @@
 
         if (!isset($_SESSION['user_id']) && isset($_POST['columna_sesion'])) {
             
-            
             $controlador->validar_usuario();
+        
+
             //$rol = $_SESSION['rol'];
-            //echo json_encode(["error" => "Acceso denegado. Por favor, inicia sesión."]);
+        
+            //echo json_encode(["error" => "Acceso denegado. Por favor, inicia sesión samuel."]);
            
         }else{
             echo $_SESSION['username'];
             session_unset();
             session_destroy();
-            header("Location: index.php");
+            header("Location: /");
             exit;
         }
         
@@ -101,7 +114,8 @@
 
         session_unset();
         session_destroy();
-        header("Location: index.php");
+        header("Location: /");
+        exit;
 
     }else if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['t155'])) {
         ob_start();   
@@ -119,3 +133,5 @@
     
 
 ?>
+
+*/

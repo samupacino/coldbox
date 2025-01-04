@@ -160,7 +160,8 @@ function registro_instrumentos(){
 
 // Función para obtener el rol del usuario actual
 function getUserRole() {
-return fetch('index.php?action=getUserRole')
+
+fetch('index.php?action=getUserRole')
 .then(response => response.json())
 .then(data => {
     if (data.success) {
