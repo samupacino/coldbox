@@ -18,7 +18,7 @@ function iniciar_sesion(){
         .then(data => {
 
             if(data.success == true){
-                window.location.href = '/';
+                window.location.href = '/coldbox/';
             }
             //window.location.href = "index.php";s
         });
