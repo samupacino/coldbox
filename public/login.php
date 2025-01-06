@@ -1,6 +1,6 @@
 <?php
-    require_once '/Applications/MAMP/htdocs/coldbox/core/SessionManager.php';
-    require_once '/Applications/MAMP/htdocs/coldbox/Controlador/LoginController.php';
+    require_once '../core/SessionManager.php';
+    require_once '../Controlador/LoginController.php';
 
     SessionManager::startSession();
 
