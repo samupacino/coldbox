@@ -14,10 +14,10 @@ CREATE TABLE plataformas (
     nombre VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE instrumentos (
+CREATE TABLE instrumento_pl2 (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    plataforma INT NOT NULL UNIQUE,
-    nombre VARCHAR(255) NOT NULL,
+    nombre VARCHAR(255) NOT NULL UNIQUE,
+    plataforma INT NOT NULL,
     FOREIGN KEY (plataforma) REFERENCES plataformas(id)
 );
 

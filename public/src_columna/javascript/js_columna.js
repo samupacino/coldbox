@@ -7,7 +7,7 @@ function showOptions(platformId) {
     plataforma_actual.setAttribute('name',platformId);
 
 
-    fetch(`index.php?plataforma=${platformId}`)// fetch(`server.php?plataforma=${platformId}`)
+    fetch(`index.php?action=listxplataforma&plataforma=${platformId}`)// fetch(`server.php?plataforma=${platformId}`)
         .then(response => response.json())
         .then(data => {
             
@@ -31,7 +31,7 @@ function logout() {
 
     
     ajax.addEventListener('readystatechange',function(evento){
-
+        evento.preventDefault();
         if(evento.target.readyState != 4){
             return;
         }
@@ -44,10 +44,11 @@ function logout() {
         }
     });
 
-    ajax.open("GET",'index.php?logout');
+    ajax.open("GET",'index.php?action=logout');
     ajax.send();
 }
 function closeModal() {
+    var planta =  document.getElementById('');
     var inputElement = document.getElementById('modal-register');
     inputElement.removeAttribute('name');
 
@@ -177,23 +178,20 @@ fetch('index.php?action=getUserRole')
 });
 }
 
-function seleccion_planta(){
-    var seleccion =  document.getElementById('columna_cajamarquilla');
+function seleccion_planta(event){
+    event.preventDefault();
+    var planta = event.target.getAttribute('href')
 
-    seleccion.addEventListener('click',function(event){
-        event.preventDefault();
-
-        fetch('index.php?t155')
-        .then(response => response.text())
-        .then(data =>{
-       
-            document.querySelector('.body-text').innerHTML = data;
-        })
-    });
+    fetch(`index.php?action=seleccionplanta&planta=${planta}`)
+    .then(response => response.text())
+    .then(data =>{ 
+        document.querySelector('.body-text').innerHTML = data;
+    })
+  
 }
 
 window.onload =function(){
     registro_instrumentos()
     registro_instrumento();
-    seleccion_planta();
+   
 }

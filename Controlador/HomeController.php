@@ -4,23 +4,31 @@
 
     //use Modelo\Conexion;
 
-    Class Controlador{
+    Class HomeController{
 
+        private $planta;
 
         public function login(){
     
             return require_once'../vista/login.php';
 
         }
+        public function getTextPlanta(){
+            return $this->planta;
+        }
+        public function setTextPlanta($planta){
+            $this->planta = 'instrumento_'.$planta;
+        }
+     
         public function validar_usuario(){
           
             if (session_status() === PHP_SESSION_NONE) {
-                session_start();  
+                //session_start();  
             }
      
             $query = "SELECT *, (SELECT COUNT(*) FROM usuarios WHERE username = ? AND password = ?) AS Total  FROM usuarios WHERE username = ? AND password = ?";
 
-            $conexion = new Conexion('localhost', 'PlataformaDB', 'root', 'samuellujan1989');
+            $conexion = new Conexion();
 
             $username = $_POST['username'];
             $password = md5($_POST['password']); // Comparar con la contraseña cifrada
@@ -48,8 +56,8 @@
         }
         public function eliminar_instrumento(){
             
-            $sql = "DELETE FROM instrumentos WHERE id = ?";
-            $conexion = new Conexion('localhost', 'PlataformaDB', 'root', 'samuellujan1989');
+            $sql = "DELETE FROM ".$this->getTextPlanta()." WHERE id = ?";
+            $conexion = new Conexion();
 
             $id = $_POST['id'];
             $datos = [$id];
@@ -64,8 +72,8 @@
         }
         public function editar_instrumento(){
           
-            $sql = "UPDATE instrumentos SET nombre = ? WHERE id = ?";
-            $conexion = new Conexion('localhost', 'PlataformaDB', 'root', 'samuellujan1989');
+            $sql = "UPDATE ".$this->getTextPlanta()." SET nombre = ? WHERE id = ?";
+            $conexion = new Conexion();
 
             $id = $_POST['id'];
             $nombre = $_POST['nombre'];
@@ -82,13 +90,10 @@
         public function buscar_instrumento(){
 
             
-            $sql = "SELECT plataformas.nombre AS platform 
-                    FROM instrumentos 
-                    JOIN plataformas ON instrumentos.plataforma = plataformas.id 
-                    WHERE instrumentos.nombre REGEXP ?";
+            $sql = "SELECT plataformas.nombre AS platform FROM ".$this->getTextPlanta()." JOIN plataformas ON ".$this->getTextPlanta().".plataforma = plataformas.id WHERE ".$this->getTextPlanta().".nombre REGEXP ?";
             
 
-            $conexion = new Conexion('localhost', 'PlataformaDB', 'root', 'samuellujan1989');
+            $conexion = new Conexion();
    
 
             $buscar_tag = $_GET['nombre'];
@@ -105,8 +110,8 @@
         }
         public function registro_instrumento(){
 
-            $sql = "INSERT INTO instrumentos (plataforma, nombre) VALUES (?,?)";
-            $conexion = new Conexion('localhost', 'PlataformaDB', 'root', 'samuellujan1989');
+            $sql = "INSERT INTO ".$this->getTextPlanta()." (plataforma, nombre) VALUES (?,?)";
+            $conexion = new Conexion();
 
             $plataforma = $_POST['plataforma'];
             $nombre = $_POST['nombre'];
@@ -120,13 +125,12 @@
                 return ["error" => $conn->error];
             }
         }
-        public function listar_plataforma(){
+        public function listar_plataforma($plataforma){
 
            
-            $sql = "SELECT id, nombre FROM instrumentos WHERE plataforma = ?";
-            $conexion = new Conexion('localhost', 'PlataformaDB', 'root', 'samuellujan1989');
+            $sql = "SELECT id, nombre FROM ".$this->getTextPlanta()." WHERE plataforma = ?";
+            $conexion = new Conexion();
 
-            $plataforma = $_GET['plataforma'];
             $resultado = $conexion->obtenerFilas($sql,[$plataforma]);
 
             return $resultado;
@@ -138,7 +142,7 @@
 
         }
         public function coldboxcajamarquilla(){
-
+        
             return require_once'../vista/coldboxcajamarquilla.php';
 
         }

@@ -1,4 +1,8 @@
 
+    <div id="pl2">
+        <h1><?php echo $_SESSION['planta'] ?></h1>
+    </div>
+    
     <div class="search-container">
         <input type="text" id="search-input" placeholder="Buscar instrumento">
         <button onclick="searchInstrument()">Buscar</button>
@@ -9,7 +13,7 @@
 <!-- Lista de plataformas -->
 
 
-    <div class="column">
+    <div class="column" >
         <div></div>
         <div class="platform" onclick="showOptions(7)">PLATAFORMA 7</div>
         <div class="platform" onclick="showOptions(6)">PLATAFORMA 6</div>

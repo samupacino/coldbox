@@ -24,8 +24,9 @@
         <input type="radio" name="slider" id="close-btn">
         <ul class="nav-links">
         <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
-        <li><a href="" id="columna_cajamarquilla">PL2</a></li>
-        <li><a href="index.php?logout">Cerrar sesión</a></li>
+        <li><a href="pl2" onclick="seleccion_planta(event)">PL2</a></li>
+        <li><a href="t155"  onclick="seleccion_planta(event)">T155</a></li>
+        <li><a href="index.php?action=logout">Cerrar sesión</a></li>
         </ul>
         <label for="menu-btn" class="btn menu-btn"><i class="fa-solid fa-bars"></i></label>
     </div>

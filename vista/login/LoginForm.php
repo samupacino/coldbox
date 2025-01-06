@@ -25,6 +25,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="src_login/css/util.css?v=<?php echo time();?>">
 	<link rel="stylesheet" type="text/css" href="src_login/css/main.css?v=<?php echo time();?>">
+	
 <!--===============================================================================================-->
 </head>
 <body>
@@ -35,7 +36,7 @@
 				<span class="login100-form-title p-b-41">
 					SamPortBLACK
 				</span>
-				<form action="?columna" method="POST" class="login100-form validate-form p-b-33 p-t-5">
+				<form action="login.php?iniciar_sesion" method="POST" class="login100-form validate-form p-b-33 p-t-5" id="formulario_sesion">
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
 						<input class="input100" type="text" name="username" placeholder="User name" value="admin">
@@ -77,5 +78,6 @@
 	<script src="src_login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="src_login/js/main.js?v=<?php echo time();?>"></script>
+	<script src="src_login/js/sesion.js?v=<?php echo time();?>"></script>
 </body>
 </html>

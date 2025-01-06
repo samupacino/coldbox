@@ -1,5 +1,5 @@
 <?php
-  
+    include_once'../config/config.php';
     //namespace Modelo;
 
     class Conexion {
@@ -10,12 +10,12 @@
         private $charset;
         private $pdo;
 
-        public function __construct($host, $dbName, $username, $password, $charset = 'utf8mb4') {
-            $this->host = $host;
-            $this->dbName = $dbName;
-            $this->username = $username;
-            $this->password = $password;
-            $this->charset = $charset;
+        public function __construct() {
+            $this->host = DB_HOST;
+            $this->dbName = DB_NAME;
+            $this->username = DB_USER;
+            $this->password = DB_PASS;
+            $this->charset = DB_CHARSET;
             $this->pdo = null;
         }
      
