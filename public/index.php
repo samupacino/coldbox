@@ -137,8 +137,8 @@
         $resultado = $controlador->buscar_instrumento();
      
         if (count($resultado) > 0) {
-   
-            echo json_encode(["success" => true, "platform" => $resultado[0]['platform']]);
+            echo json_encode(["success" => true, "platform" => $resultado]);
+            //echo json_encode(["success" => true, "platform" => $resultado[0]['platform']]);
         } else {
             echo json_encode(["success" => false, "message" => "Instrumento no encontrado."]);
         }

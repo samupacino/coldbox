@@ -87,17 +87,16 @@
             }
 
         }
-        public function buscar_instrumento(){
-
+        public function buscar_instrumento(){     
+            //$sql = "SELECT plataformas.nombre AS platform FROM ".$this->getTextPlanta()." JOIN plataformas ON ".$this->getTextPlanta().".plataforma = plataformas.id WHERE ".$this->getTextPlanta().".nombre REGEXP ?";
+            //$sql = "SELECT plataformas.nombre AS platform FROM instrumento_pl2 JOIN plataformas ON instrumento_pl2.plataforma = plataformas.id WHERE instrumento_pl2.nombre REGEXP ?";
             
-            $sql = "SELECT plataformas.nombre AS platform FROM ".$this->getTextPlanta()." JOIN plataformas ON ".$this->getTextPlanta().".plataforma = plataformas.id WHERE ".$this->getTextPlanta().".nombre REGEXP ?";
-            
-
+            $sql = "SELECT ".$this->getTextPlanta().".nombre, ".$this->getTextPlanta().".plataforma FROM ".$this->getTextPlanta()." JOIN plataformas ON ".$this->getTextPlanta().".plataforma = plataformas.id WHERE ".$this->getTextPlanta().".nombre REGEXP ?";
+        
             $conexion = new Conexion();
    
-
             $buscar_tag = $_GET['nombre'];
-            $buscar_tag = trim($buscar_tag);
+            $buscar_tag = strtoupper(trim($buscar_tag));
             $buscar_tag = str_replace('-','',$buscar_tag);
             $buscar_tag = '^'.implode('-?',str_split($buscar_tag)).'$';
             
@@ -111,18 +110,35 @@
         public function registro_instrumento(){
 
             $sql = "INSERT INTO ".$this->getTextPlanta()." (plataforma, nombre) VALUES (?,?)";
-            $conexion = new Conexion();
-
+            $sql_validar = "SELECT COUNT(*) AS EXISTE FROM ".$this->getTextPlanta()." JOIN plataformas ON ".$this->getTextPlanta().".plataforma = plataformas.id WHERE ".$this->getTextPlanta().".nombre REGEXP ?";
+        
+            $registro = 0;
             $plataforma = $_POST['plataforma'];
             $nombre = $_POST['nombre'];
-            $datos = [$plataforma,$nombre];
 
-            $registro = $conexion->guardar_instrumento($sql,$datos);
+            $conexion = new Conexion();
 
+            /////////
+            $buscar_tag = $nombre;
+            $buscar_tag = strtoupper(trim($buscar_tag));
+            $buscar_tag = str_replace('-','',$buscar_tag);
+            $buscar_tag = '^'.implode('-?',str_split($buscar_tag)).'$';
+            
+            $datos = [$buscar_tag];
+
+            $resultado = $conexion->obtenerFilas($sql_validar,$datos);
+
+            ////////
+            if($resultado[0]['EXISTE']<=0){
+                
+                $datos = [strtoupper($plataforma),strtoupper($nombre)];
+                $registro = $conexion->guardar_instrumento($sql,$datos);
+          
+            }
             if ($registro >= 1) {
                 return ["success" => true];
             } else {
-                return ["error" => $conn->error];
+                return ["succes" => false, "message" => "El instrumento ya existe."];
             }
         }
         public function listar_plataforma($plataforma){

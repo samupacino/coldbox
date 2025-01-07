@@ -67,6 +67,10 @@ function validateInput(name) {
     }
   }
 
+
+function validando_input(){
+    document.getElementById('mensaje_error').textContent = "";
+}  
 // Delegación de eventos para el formulario
 function registro_instrumento(){
     document.addEventListener('submit', function (event) {
@@ -91,7 +95,19 @@ function registro_instrumento(){
                 //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 //body: `action=add&plataforma=${currentPlatform}&nombre=${name}`
                 body: datos
-            }).then(() => showOptions(currentPlatform));
+            }).then(data=>data.json())
+            .then(data => {
+                console.log(data);
+                if(data.success){
+                    showOptions(currentPlatform);
+                }else{
+                    var mensaje_error = document.getElementById('mensaje_error');
+                    mensaje_error.textContent = data.message;
+                }
+                
+                
+            });
+            
             document.getElementById('instrument').value = "";
             // Aquí puedes realizar otras acciones, como enviar datos mediante fetch
         }
@@ -130,10 +146,11 @@ function searchInstrument() {
         .then(data => {
             const result = document.getElementById('search-result');
             if (data.success) {
-                const platform = data.platform;
-             
-                result.textContent = `El instrumento "${query}" se encuentra en: ${platform}`;
+                
+              
+                result.textContent = `El instrumento "${data.platform[0]['nombre']}" se encuentra en la plataforma: ${data.platform[0]['plataforma']}`;
             } else {
+                
                 result.textContent = `El instrumento "${query}" no fue encontrado.`;
             }
         });

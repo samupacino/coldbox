@@ -42,12 +42,16 @@
         
         <!-- Formulario -->
         <form id="instrument-form">
-            <input type="text" id="instrument" name="nombre" placeholder="Nuevo instrumento" required>
+            <input type="text" id="instrument" name="nombre" onclick="validando_input()" placeholder="Nuevo instrumento" required>
             <button type="submit" class="estilo_button">Registrar</button>
         </form>
         <!-- Pie del Modal -->
+         <br>
         <div class="modal-footer" >
             <button onclick="closeModal()" class="estilo_button">Cerrar</button>
+        </div>
+        <div class="modal-footer" >
+            <h3 id="mensaje_error"></h3>
         </div>
     </div>
 
