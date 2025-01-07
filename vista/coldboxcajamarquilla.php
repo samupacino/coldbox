@@ -1,8 +1,8 @@
 
     <div id="pl2">
-        <h1><?php echo $_SESSION['planta'] ?></h1>
+        <h1><?php echo strtoupper($_SESSION['planta']); ?></h1>
     </div>
-    
+    <br>
     <div class="search-container">
         <input type="text" id="search-input" placeholder="Buscar instrumento">
         <button onclick="searchInstrument()">Buscar</button>

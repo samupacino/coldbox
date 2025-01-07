@@ -5,6 +5,7 @@ USE PlataformaDB;
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
+    name_complete VARCHAR(250) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL, -- Contraseñas cifradas
     rol ENUM('admin', 'invitado') NOT NULL DEFAULT 'invitado'
 );
@@ -32,9 +33,8 @@ INSERT INTO plataformas (id,nombre) VALUES
 (7,'Plataforma 7'),
 (8,'Base');
 
-INSERT INTO usuarios (username, password, rol) 
+INSERT INTO usuarios (username,name_complete,password, rol) 
 VALUES 
-('makens', MD5('makens'), 'admin'),
-('admin', MD5('admin123'), 'admin'), 
-('guest', MD5('guest123'), 'invitado');
+('samuel', 'samuel lujan',MD5('samuel'), 'admin');
+
 

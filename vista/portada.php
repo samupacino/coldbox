@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="src_columna/estilos/estilos_barra_menu.css?v=<?php echo time();?>"></link>
     <link rel="stylesheet" href="src_columna/estilos/estilos_columna.css?v=<?php echo time();?>"></link>
+    <link rel="stylesheet" href="src_columna/estilos/titulo.css?v=<?php echo time();?>"></link>
     <title>Gestión de Instrumentos</title>
 </head>
 
@@ -19,7 +20,17 @@
     <nav id="barra_columna">
 
     <div class="wrapper">
-        <div class="logo"><a href="#">SamControl</a></div>
+        <div class="container">
+
+        <div class="box">
+            <div class="title">
+                <span class="block"></span>
+                <h1><?php echo ucwords($_SESSION['name_complete']);?><span></span></h1>
+            </div>
+        </div>
+
+        </div>  
+       
         <input type="radio" name="slider" id="menu-btn">
         <input type="radio" name="slider" id="close-btn">
         <ul class="nav-links">

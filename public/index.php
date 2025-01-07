@@ -15,7 +15,7 @@
     }else{
 
         $getAction = [
-            "seleccionplanta" => function($getParams = null){planta_seleccion($getParams);},
+            "seleccionplanta"  => function($getParams = null){planta_seleccion($getParams);},
             "logout" => function($getParams = null){logout_app($getParams);},
             "searchInstrument" => function($getParams = null){buscando_instrumento($getParams);},
             "listxplataforma" => function($getParams = null){listar_plataforma($getParams);}
@@ -50,8 +50,8 @@
             }
         }else{
 
-            SessionManager::destroySession();
-            header('Location: /coldbox/login.php');
+            //SessionManager::destroySession();
+            //header('Location: /coldbox/login.php');
         } 
     }
 

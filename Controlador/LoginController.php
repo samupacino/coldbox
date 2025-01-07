@@ -25,6 +25,7 @@ class LoginController {
 
             $_SESSION['user_id'] = $resultado[0]['id'];
             $_SESSION['username'] = $resultado[0]['username'];
+            $_SESSION['name_complete'] = $resultado[0]['name_complete'];
             $_SESSION['rol'] = $resultado[0]['rol'];
             
             return ['success' => true];
