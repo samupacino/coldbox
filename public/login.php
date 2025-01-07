@@ -9,7 +9,7 @@
     if(isset($_GET['iniciar_sesion'])){
        
         if (isset($_SESSION['user_id'])) {
-            header('Location: coldbox/index.php');
+            header('Location: /coldbox/index.php');
             exit();
         }
         

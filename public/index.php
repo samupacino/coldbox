@@ -9,7 +9,7 @@
 
     if (!isset($_SESSION['user_id'])) {
 
-        header('Location: coldbox/login.php');
+        header('Location: /coldbox/login.php');
         exit();
 
     }else{
@@ -51,7 +51,7 @@
         }else{
 
             SessionManager::destroySession();
-            header('Location: coldbox/login.php');
+            header('Location: /coldbox/login.php');
         } 
     }
 
