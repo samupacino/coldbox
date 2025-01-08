@@ -18,15 +18,14 @@ class LoginController {
 
         $datos = [$username,$password,$username,$password];
 
-        $resultado = $conexion->obtenerFilas($query,$datos);
-    
-    
-        if($resultado[0]['Total'] >= 1){
+        $resultado = $conexion->obtenerFila($query,$datos);
+       
+        if($resultado && $resultado['Total'] >= 1){
 
-            $_SESSION['user_id'] = $resultado[0]['id'];
-            $_SESSION['username'] = $resultado[0]['username'];
-            $_SESSION['name_complete'] = $resultado[0]['name_complete'];
-            $_SESSION['rol'] = $resultado[0]['rol'];
+            $_SESSION['user_id'] = $resultado['id'];
+            $_SESSION['username'] = $resultado['username'];
+            $_SESSION['name_complete'] = $resultado['name_complete'];
+            $_SESSION['rol'] = $resultado['rol'];
             
             return ['success' => true];
 

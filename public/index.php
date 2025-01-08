@@ -4,7 +4,6 @@
     include_once'../Controlador/HomeController.php';
     include_once'../core/SessionManager.php';
  
-
     SessionManager::startSession();
 
     if (!isset($_SESSION['user_id'])) {
@@ -50,8 +49,9 @@
             }
         }else{
 
-            //SessionManager::destroySession();
-            //header('Location: /coldbox/login.php');
+            SessionManager::destroySession();
+            header('Location: /coldbox/login.php');
+            exit;
         } 
     }
 
@@ -188,7 +188,5 @@
         }
         
     }
-
     
 ?>
-

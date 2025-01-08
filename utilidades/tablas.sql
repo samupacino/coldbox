@@ -35,6 +35,6 @@ INSERT INTO plataformas (id,nombre) VALUES
 
 INSERT INTO usuarios (username,name_complete,password, rol) 
 VALUES 
-('makens', 'makens poma',MD5('makens123'), 'admin');
+('samuel', 'samuel lujan',MD5('samuel'), 'admin');
 
 

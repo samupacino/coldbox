@@ -1,5 +1,4 @@
 
-
 iniciar_sesion();
 function iniciar_sesion(){
 
@@ -15,10 +14,12 @@ function iniciar_sesion(){
             method: 'POST',
             body: datos
         }).then(response => response.json())
-        .then(data => {
-
-            if(data.success == true){
+        .then(response => {
+            console.log(response);
+            if(response.success == true){
                 window.location.href = '/coldbox/';
+            }else{
+                alert(response.message);
             }
             //window.location.href = "index.php";s
         });
@@ -27,3 +28,5 @@ function iniciar_sesion(){
     });
     
 }
+
+
