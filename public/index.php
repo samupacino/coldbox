@@ -182,7 +182,7 @@
         $planta = ['pl2','t155'];
 
         if (isset($_SESSION['planta']) && isset($_SESSION['controlador'])) {
-            echo $_SESSION['controlador'];
+           
             unset($_SESSION['planta']);
             unset($_SESSION['controlador']);
         }
