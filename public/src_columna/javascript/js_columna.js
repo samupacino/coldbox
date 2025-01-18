@@ -7,7 +7,7 @@ function showOptions(platformId) {
     plataforma_actual.setAttribute('name',platformId);
 
 
-    fetch(`index.php?action=listxplataforma&plataforma=${platformId}`)// fetch(`server.php?plataforma=${platformId}`)
+    fetch(`index.php?action=listxplataforma&plataforma=${platformId}&planta`)// fetch(`server.php?plataforma=${platformId}`)
         .then(response => response.json())
         .then(data => {
             
@@ -44,7 +44,7 @@ function logout() {
         }
     });
 
-    ajax.open("GET",'index.php?action=logout');
+    ajax.open("GET",'index.php?action=logout&planta');
     ajax.send();
 }
 function closeModal() {
@@ -90,14 +90,14 @@ function registro_instrumento(){
             datos.append('action','add');
             datos.append('plataforma',currentPlatform);
 
-            fetch('index.php', {
+            fetch('index.php?planta', {
                 method: 'POST',
                 //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 //body: `action=add&plataforma=${currentPlatform}&nombre=${name}`
                 body: datos
             }).then(data=>data.json())
             .then(data => {
-                console.log(data);
+            
                 if(data.success){
                     showOptions(currentPlatform);
                 }else{
@@ -119,7 +119,7 @@ function editInstrument(id, newName) {
         
         return;
     }
-    fetch('index.php', {
+    fetch('index.php?planta', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `action=edit&id=${id}&nombre=${newName}`
@@ -128,7 +128,7 @@ function editInstrument(id, newName) {
 
 function deleteInstrument(id) {
     var currentPlatform =  document.getElementById('modal-register').getAttribute('name');
-    fetch('index.php', {
+    fetch('index.php?planta', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `action=delete&id=${id}`
@@ -141,7 +141,7 @@ function searchInstrument() {
         document.getElementById('search-result').textContent = "Introduce un nombre para buscar.";
         return;
     }
-    fetch(`index.php?action=searchInstrument&nombre=${encodeURIComponent(query)}`)// fetch(`server.php?action=searchInstrument&nombre=${encodeURIComponent(query)}`)
+    fetch(`index.php?action=searchInstrument&nombre=${encodeURIComponent(query)}&planta`)// fetch(`server.php?action=searchInstrument&nombre=${encodeURIComponent(query)}`)
         .then(res => res.json())
         .then(data => {
             const result = document.getElementById('search-result');
@@ -179,7 +179,7 @@ function registro_instrumentos(){
 // Función para obtener el rol del usuario actual
 function getUserRole() {
 
-fetch('index.php?action=getUserRole')
+fetch('index.php?action=getUserRole&planta')
 .then(response => response.json())
 .then(data => {
     if (data.success) {
@@ -198,7 +198,7 @@ fetch('index.php?action=getUserRole')
 function seleccion_planta(event){
     event.preventDefault();
     var planta = event.target.getAttribute('href')
-
+    console.log(planta);
     fetch(`index.php?action=seleccionplanta&planta=${planta}`)
     .then(response => response.text())
     .then(data =>{ 

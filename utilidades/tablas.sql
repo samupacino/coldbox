@@ -22,6 +22,13 @@ CREATE TABLE instrumento_pl2 (
     FOREIGN KEY (plataforma) REFERENCES plataformas(id)
 );
 
+CREATE TABLE instrumento_t155 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL UNIQUE,
+    plataforma INT NOT NULL,
+    FOREIGN KEY (plataforma) REFERENCES plataformas(id)
+);
+
 -- Registra plataformas iniciales
 INSERT INTO plataformas (id,nombre) VALUES 
 (1,'Plataforma 1'), 
@@ -35,6 +42,6 @@ INSERT INTO plataformas (id,nombre) VALUES
 
 INSERT INTO usuarios (username,name_complete,password, rol) 
 VALUES 
-('samuel', 'samuel lujan',MD5('samuel'), 'admin');
+('invitado', 'invitado',MD5('12345'), 'invitado');
 
 

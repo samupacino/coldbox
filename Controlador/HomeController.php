@@ -157,9 +157,14 @@
             return require_once'../vista/portada.php';
 
         }
-        public function coldboxcajamarquilla(){
+        public function coldbox($planta){
         
-            return require_once'../vista/coldboxcajamarquilla.php';
+            if($planta == 'pl2'){
+                return require_once'../vista/coldboxcajamarquilla.php';
+            }else if($planta == 't155'){
+                return require_once'../vista/coldboxpisco.php';
+            }
+
 
         }
     }

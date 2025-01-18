@@ -2,6 +2,7 @@
 <?php
 
     include_once'../Controlador/HomeController.php';
+    include_once'../Controlador/QuimicaController.php';
     include_once'../core/SessionManager.php';
  
     SessionManager::startSession();
@@ -13,14 +14,14 @@
 
     }else{
 
-        $getAction = [
+        $getAction= [
             "seleccionplanta"  => function($getParams = null){planta_seleccion($getParams);},
             "logout" => function($getParams = null){logout_app($getParams);},
             "searchInstrument" => function($getParams = null){buscando_instrumento($getParams);},
             "listxplataforma" => function($getParams = null){listar_plataforma($getParams);}
         ];
     
-        $postAction = [
+        $postAction= [
             "add" => function(){registro_instrument();},
             "edit" => function(){edit_instrument();},
             "delete" => function(){delete_instrumento();},
@@ -32,7 +33,7 @@
             $controlador = new HomeController();
             $_SESSION['controlador'] = serialize($controlador); // Guardar en la sesión
           
-        }else if (isset($_POST['action']) || isset($_GET['action'])) {
+        }else if ((isset($_POST['action']) || isset($_GET['action'])) && isset($_GET['planta'])) {
             // Recuperar el controlador de la sesión
             $controlador = unserialize($_SESSION['controlador']);
          
@@ -47,6 +48,23 @@
                 $getAction[$_GET['action']]($getParams);
                 exit;
             }
+        }else if ((isset($_POST['action']) || isset($_GET['action'])) && isset($_GET['planta']) && $_GET['calculo'] == 'quimica') {
+            
+
+            exit;
+            if (!isset($_SESSION['QuimicaControlador'])) {
+                // Crear el controlador si no existe en la sesión
+                $quimica_controlador = new QuimicaController();
+                $_SESSION['QuimicaControlador'] = serialize($quimica_controlador); // Guardar en la sesión
+              
+            }
+        
+            ob_start();
+            $quimica_controlador = unserialize($_SESSION['QuimicaControlador']);
+            $quimica_vista = $quimica_controlador->index();
+            echo $quimica_vista;
+            exit;
+
         }else{
 
             SessionManager::destroySession();
@@ -161,7 +179,15 @@
         exit;
     }
     function planta_seleccion($getParams = null){
-        $planta = ['pl2','t155k'];
+        $planta = ['pl2','t155'];
+
+        if (isset($_SESSION['planta']) && isset($_SESSION['controlador'])) {
+            echo $_SESSION['controlador'];
+            unset($_SESSION['planta']);
+            unset($_SESSION['controlador']);
+        }
+
+
         if(in_array($getParams['planta'],$planta)){
             ob_start();   
             //echo ini_get('session.auto_start') ? 'session.auto_start está habilitado' : 'session.auto_start está deshabilitado';
@@ -173,13 +199,15 @@
         
             $_SESSION['planta'] = $_GET['planta'];
 
-            $controlador = unserialize($_SESSION['controlador']);
+            $controlador = new HomeController();
+            $_SESSION['controlador'] = serialize($controlador);
 
+            $controlador = unserialize($_SESSION['controlador']);
             $controlador->setTextPlanta($_GET['planta']);
 
             $_SESSION['controlador'] = serialize($controlador);
 
-            $controlador->coldboxcajamarquilla();
+            $controlador->coldbox($_GET['planta']);
         
             $coldbox = ob_get_clean();
             echo $coldbox;
