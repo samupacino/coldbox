@@ -1,11 +1,11 @@
 
-    <div id="pl2">
+    <div id="pl2" name="pl2">
         <h1><?php echo strtoupper($_SESSION['planta']); ?></h1>
     </div>
     <br>
     <div class="search-container">
         <input type="text" id="search-input" placeholder="Buscar instrumento">
-        <button onclick="searchInstrument()">Buscar</button>
+        <button onclick="searchInstrument('pl2')">Buscar</button>
     </div>
 
     <div class="search-result" id="search-result"></div>
@@ -15,15 +15,15 @@
 
     <div class="column" >
         <div></div>
-        <div class="platform" onclick="showOptions(7)">PLATAFORMA 7</div>
-        <div class="platform" onclick="showOptions(6)">PLATAFORMA 6</div>
-        <div class="platform" onclick="showOptions(5)">PLATAFORMA 5</div>
-        <div class="platform" onclick="showOptions(4)">PLATAFORMA 4</div>
-        <div class="platform" onclick="showOptions(3)">PLATAFORMA 3</div>
-        <div class="platform" onclick="showOptions(2)">PLATAFORMA 2</div>
-        <div class="platform" onclick="showOptions(1)">PLATAFORMA 1</div>
+        <div class="platform" onclick="showOptions(7,'pl2')">PLATAFORMA 7</div>
+        <div class="platform" onclick="showOptions(6,'pl2')">PLATAFORMA 6</div>
+        <div class="platform" onclick="showOptions(5,'pl2')">PLATAFORMA 5</div>
+        <div class="platform" onclick="showOptions(4,'pl2')">PLATAFORMA 4</div>
+        <div class="platform" onclick="showOptions(3,'pl2')">PLATAFORMA 3</div>
+        <div class="platform" onclick="showOptions(2,'pl2')">PLATAFORMA 2</div>
+        <div class="platform" onclick="showOptions(1,'pl2')">PLATAFORMA 1</div>
 
-        <div class="base" onclick="showOptions(8)">Base</div>
+        <div class="base" onclick="showOptions(8,'pl2')">Base</div>
     </div>
 
 
@@ -41,7 +41,7 @@
         </div>
         
         <!-- Formulario -->
-        <form id="instrument-form">
+        <form id="instrument-form" name="pl2">
             <input type="text" id="instrument" name="nombre" onclick="validando_input()" placeholder="Nuevo instrumento" required>
             <button type="submit" class="estilo_button">Registrar</button>
         </form>

@@ -12,31 +12,33 @@
         header('Location: /coldbox/login.php');
         exit();
 
-    }else{
+    }else { 
 
         $getAction= [
             "seleccionplanta"  => function($getParams = null){planta_seleccion($getParams);},
             "logout" => function($getParams = null){logout_app($getParams);},
             "searchInstrument" => function($getParams = null){buscando_instrumento($getParams);},
-            "listxplataforma" => function($getParams = null){listar_plataforma($getParams);}
+            "listxplataforma" => function($getParams = null){listar_plataforma($getParams);},
+            "getUserRole" => function($getParams = null){getUserRol($getParams);}
         ];
     
+        
         $postAction= [
             "add" => function(){registro_instrument();},
             "edit" => function(){edit_instrument();},
             "delete" => function(){delete_instrumento();},
         ];
 
-
         if (!isset($_SESSION['controlador'])) {
             // Crear el controlador si no existe en la sesión
             $controlador = new HomeController();
             $_SESSION['controlador'] = serialize($controlador); // Guardar en la sesión
           
-        }else if ((isset($_POST['action']) || isset($_GET['action'])) && isset($_GET['planta'])) {
+        }else if ((isset($_POST['action']) || isset($_GET['action'])) && isset($_GET['planta']) && ($_GET['planta'] == 'pl2' || $_GET['planta'] == 't155')){
             // Recuperar el controlador de la sesión
+       
             $controlador = unserialize($_SESSION['controlador']);
-         
+
         
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && isset($postAction[$_POST['action']])) {
                 
@@ -48,10 +50,12 @@
                 $getAction[$_GET['action']]($getParams);
                 exit;
             }
-        }else if ((isset($_POST['action']) || isset($_GET['action'])) && isset($_GET['planta']) && $_GET['calculo'] == 'quimica') {
-            
 
-            exit;
+        
+        }else if ((isset($_POST['action']) || isset($_GET['action'])) && isset($_GET['planta']) && $_GET['planta'] == 'quimica') {
+            
+        
+        
             if (!isset($_SESSION['QuimicaControlador'])) {
                 // Crear el controlador si no existe en la sesión
                 $quimica_controlador = new QuimicaController();
@@ -65,12 +69,39 @@
             echo $quimica_vista;
             exit;
 
-        }else{
-
-            SessionManager::destroySession();
-            header('Location: /coldbox/login.php');
+        }else if ((isset($_POST['action']) || isset($_GET['action'])) && isset($_GET['planta']) && $_GET['planta'] == 'about') {
             exit;
-        } 
+        
+            if (!isset($_SESSION['AboutControlador'])) {
+                // Crear el controlador si no existe en la sesión
+                $about_controlador = new AboutController();
+                $_SESSION['AboutControlador'] = serialize($about_controlador); // Guardar en la sesión
+              
+            }
+        
+            ob_start();
+            $about_controlador = unserialize($_SESSION['AboutControlador']);
+            $about_vista = $about_controlador->index();
+            echo $quimica_vista;
+            exit;
+
+        }else{
+            //echo "pagina no encontrado";
+            //exit;
+        }
+        
+
+    }
+
+        // Comprobar si la página fue recargada
+    if (!isset($_SESSION['page_visited'])) {
+        // Primera vez visitando la página en esta sesión
+        $_SESSION['page_visited'] = true;
+    } else {
+        // Página recargada: cerrar sesión y redirigir al login
+        SessionManager::destroySession();
+        header('Location: /coldbox/login.php');
+        exit();
     }
 
     return require_once'../vista/portada.php';
@@ -117,7 +148,15 @@
         exit;
     }*/
 
-
+    function getUserRol($getParams = null){
+        if (!isset($_SESSION['user_id'])) {
+            echo json_encode(["error" => "No has iniciado sesión."]);
+            exit;
+        }
+    
+        echo json_encode(["success" => true, "rol" => $_SESSION['rol']]);
+        exit;
+    }
     
     function delete_instrumento(){
         if ($_SESSION['rol'] !== 'admin') {
@@ -175,20 +214,25 @@
     }
     function logout_app($getParams = null){
         SessionManager::destroySession();
-        header("Location: login.php");
+        header('Location: /coldbox/login.php');
         exit;
     }
     function planta_seleccion($getParams = null){
         $planta = ['pl2','t155'];
 
-        if (isset($_SESSION['planta']) && isset($_SESSION['controlador'])) {
-           
-            unset($_SESSION['planta']);
-            unset($_SESSION['controlador']);
-        }
+       
 
 
         if(in_array($getParams['planta'],$planta)){
+
+
+            if (isset($_SESSION['planta']) && isset($_SESSION['controlador'])) {
+           
+                unset($_SESSION['planta']);
+                unset($_SESSION['controlador']);
+            }
+
+
             ob_start();   
             //echo ini_get('session.auto_start') ? 'session.auto_start está habilitado' : 'session.auto_start está deshabilitado';
         

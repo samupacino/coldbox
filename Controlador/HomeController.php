@@ -152,11 +152,6 @@
             return $resultado;
 
         }
-        public function index(){
-
-            return require_once'../vista/portada.php';
-
-        }
         public function coldbox($planta){
         
             if($planta == 'pl2'){
