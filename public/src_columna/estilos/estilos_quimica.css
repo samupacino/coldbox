@@ -1,0 +1,339 @@
+.container-quimica {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.container-quimica h1 {
+    color: #0056b3;
+    text-align: center;
+}
+.container-quimica p {
+    margin-bottom: 1em;
+}
+.formula {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #eef6fc;
+    padding: 10px;
+    border-left: 4px solid #0078d4;
+    margin: 20px 0;
+}
+
+.highlight {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #eef6fc;
+    padding: 10px;
+    border-left: 4px solid #0078d4;
+    margin: 20px 0;
+}
+
+.container-quimica p, .container-quimica ul {
+    margin-bottom: 1em;
+}
+
+.container-quimica ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+
+
+.gas-container {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+.gas-container h2, .gas-container h3 {
+    color: #0056b3;
+}
+.gas-container p {
+    margin-bottom: 1em;
+}
+.gas-container ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+.gas-container pre {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #eef6fc;
+    padding: 10px;
+    border-left: 4px solid #0078d4;
+    margin: 20px 0;
+    white-space: pre-wrap;
+}
+.gas-container form {
+    margin-top: 20px;
+}
+.gas-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.gas-container input {
+    margin: 5px 0;
+    padding: 10px;
+    width: calc(100% - 22px);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.gas-container button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    margin-top: 10px;;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.gas-container button:hover {
+    background-color: #003f8a;
+}
+.gas-container .resultado_densidad {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #4caf50;
+}
+
+
+
+
+.volume-molar-container {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+.volume-molar-container h2, 
+.volume-molar-container h3 {
+    color: #0056b3;
+}
+.volume-molar-container p {
+    margin-bottom: 1em;
+}
+.volume-molar-container ul, .volume-molar-container ol {
+    margin-left: 20px;
+}
+.volume-molar-container pre {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #eef6fc;
+    padding: 10px;
+    border-left: 4px solid #0078d4;
+    margin: 20px 0;
+    white-space: pre-wrap;
+}
+.volume-molar-container .highlight {
+    font-weight: bold;
+}
+
+
+
+
+.molar-mass-container {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+.molar-mass-container h2 {
+    color: #0056b3;
+    text-align: center;
+}
+.molar-mass-container p {
+    margin-bottom: 1em;
+}
+.molar-mass-container .formula {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #eef6fc;
+    padding: 10px;
+    border-left: 4px solid #0078d4;
+    margin: 20px 0;
+    white-space: pre-wrap;
+}
+.molar-mass-container form {
+    margin-top: 20px;
+}
+.molar-mass-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.molar-mass-container input {
+    margin: 5px 0;
+    padding: 10px;
+    width: calc(100% - 22px);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.molar-mass-container button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.molar-mass-container button:hover {
+    background-color: #003f8a;
+}
+.molar-mass-container .result {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #4caf50;
+}
+
+
+
+
+
+.atomic-mass-info {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+.atomic-mass-info h2 {
+    color: #0056b3;
+    text-align: center;
+}
+.atomic-mass-info p {
+    margin-bottom: 1em;
+}
+.atomic-mass-info .highlight {
+    font-weight: bold;
+    color: #0078d4;
+}
+.atomic-mass-info ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+.atomic-mass-info .formula {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #eef6fc;
+    padding: 10px;
+    border-left: 4px solid #0078d4;
+    margin: 20px 0;
+    white-space: pre-wrap;
+}
+.atomic-mass-info .result_atomi {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #4caf50;
+}
+.atomic-mass-info button {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.atomic-mass-info button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+.argon-calculator-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.argon-calculator-container h2 {
+    text-align: center;
+    color: #0056b3;
+}
+
+.argon-section {
+    margin: 20px 0;
+}
+
+.argon-section h3 {
+    color: #0078d4;
+}
+
+.argon-section p, .argon-section ul {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.argon-section ul {
+    margin-left: 20px;
+}
+
+.argon-formula {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #eef6fc;
+    padding: 10px;
+    border-left: 4px solid #0078d4;
+    margin: 20px 0;
+    text-align: center;
+}
+
+#volumen_liquido_gas label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#volumen_liquido_gas input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#volumen_liquido_gas button {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#volumen_liquido_gas button:hover {
+    background-color: #005bb5;
+}
+
+.argon-result {
+    font-weight: bold;
+    color: #4caf50;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.argon-highlight {
+    font-weight: bold;
+    color: #ff5722;
+}
