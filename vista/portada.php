@@ -115,7 +115,9 @@
             }
 
             // Calcular la densidad
-            temperature = temperature + 273.15;
+
+            temperature = temperature + 273.15; // Convertir a Kelvin
+            
             const density = (pressure * molarMass) / (R * temperature);
       
             // Mostrar el resultado

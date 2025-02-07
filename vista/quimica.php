@@ -91,9 +91,9 @@
         <ul>
             <li><strong>Numerador:</strong> 1.015 · 39.948 = 40.547.</li>
             <li><strong>Denominador:</strong> 0.08206 · 298.15 = 24.470.</li>
-            <li><strong>Resultado:</strong> &rho; ≈ 40.547 / 24.470 ≈ 1.657 kg/m³.</li>
+            <li><strong>Resultado:</strong> &rho; ≈ 40.547 / 24.470 ≈ 1.657 g/L.</li>
         </ul>
-        <p>Por lo tanto, la densidad del gas bajo estas condiciones es aproximadamente <strong>1.657 kg/m³</strong>.</p>
+        <p>Por lo tanto, la densidad del gas bajo estas condiciones es aproximadamente <strong>1.657 g/L³</strong>.</p>
 
         <h3>Calcula la Densidad de un Gas</h3>
         <form id="densityForm">
@@ -101,7 +101,7 @@
             <input type="number" id="pressure" placeholder="Ejemplo: 1.015" step="0.001" required>
             
             <label for="molarMass">Masa molar (M) en g/mol:</label>
-            <input type="number" id="molarMass" placeholder="Ejemplo: 39.948" step="0.001" required>
+            <input type="number" id="molarMasa" placeholder="Ejemplo: 39.948" step="0.001" required>
             
             <label for="temperature">Temperatura (T) en celsius:</label>
             <input type="number" id="temperature" placeholder="Ejemplo: 25 celsius" step="0.01" required>
@@ -286,6 +286,39 @@
             <div class="argon-result" id="argonResult"></div>
         </div>
     </div>
+
+
+    <br><br><br>
+
+    <div class="gas-info-container">
+        <h1>Densidad de Gases Comunes</h1>
+
+        <!-- Argón -->
+        <div class="gas-card">
+            <h2>Argón (Ar)</h2>
+            <p class="definition">El argón es un gas noble, incoloro e inodoro, que representa aproximadamente el 0.93% del aire de la atmósfera terrestre. Es conocido por su inercia química, lo que lo hace útil en aplicaciones donde se necesita un ambiente no reactivo.</p>
+            <p class="gas-density">Densidad del Argón líquido: 1395 kg/m³</p>
+            <p class="gas-density">Densidad del Argón gaseoso: 1.784 kg/m³</p>
+        </div>
+
+        <!-- Oxígeno -->
+        <div class="gas-card">
+            <h2>Oxígeno (O<sub>2</sub>)</h2>
+            <p class="definition">El oxígeno es un gas esencial para la respiración de la mayoría de los seres vivos. Constituye el 21% del volumen de la atmósfera terrestre y es altamente reactivo, participando en procesos de combustión y oxidación.</p>
+            <p class="gas-density">Densidad del Oxígeno líquido: 1141 kg/m³</p>
+            <p class="gas-density">Densidad del Oxígeno gaseoso: 1.429 kg/m³</p>
+        </div>
+
+        <!-- Nitrógeno -->
+        <div class="gas-card">
+            <h2>Nitrógeno (N<sub>2</sub>)</h2>
+            <p class="definition">El nitrógeno es un gas incoloro e inodoro que constituye el 78% del aire de la atmósfera. Es fundamental en la industria química y se utiliza comúnmente como refrigerante en su estado líquido.</p>
+            <p class="gas-density">Densidad del Nitrógeno líquido: 807 kg/m³</p>
+            <p class="gas-density">Densidad del Nitrógeno gaseoso: 1.2506 kg/m³</p>
+        </div>
+
+    </div>
+
 
 
     <br><br><br>

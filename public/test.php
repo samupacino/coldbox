@@ -3,164 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Volumen de Gas y Conversión de Argón</title>
+    <title>Densidad de Gases: Argón, Oxígeno y Nitrógeno</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f3f4f6;
+            background-color: #f4f4f9;
             margin: 0;
-            padding: 0;
+            padding: 20px;
         }
 
-        .argon-calculator-container {
+        .gas-info-container {
             max-width: 900px;
             margin: auto;
             padding: 20px;
             background-color: #ffffff;
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        h2 {
+        .gas-info-container h1 {
             text-align: center;
             color: #0056b3;
+            margin-bottom: 10px;
         }
 
-        .argon-section {
-            margin: 20px 0;
-        }
-
-        .argon-section h3 {
-            color: #0078d4;
-        }
-
-        .argon-section p, .argon-section ul {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .argon-section ul {
-            margin-left: 20px;
-        }
-
-        .argon-formula {
-            font-family: 'Courier New', Courier, monospace;
+        .gas-card {
             background-color: #eef6fc;
-            padding: 10px;
-            border-left: 4px solid #0078d4;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
+            border-left: 5px solid #0078d4;
+            padding: 15px;
             margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        button {
-            background-color: #0078d4;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
+        .gas-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
         }
 
-        button:hover {
-            background-color: #005bb5;
+        .gas-card h2 {
+            color: #0078d4;
+            margin-top: 0;
         }
 
-        .argon-result {
+        .gas-card p {
+            margin: 10px 0;
+        }
+
+        .gas-density {
             font-weight: bold;
             color: #4caf50;
-            text-align: center;
-            margin-top: 20px;
+            font-size: 1.2em;
         }
 
-        .argon-highlight {
-            font-weight: bold;
-            color: #ff5722;
+        .definition {
+            font-style: italic;
+            color: #555;
         }
+
     </style>
 </head>
 <body>
 
-    <div class="argon-calculator-container">
-        <h2>Calculadora de Volumen de Gas y Conversión de Líquido de Argón</h2>
+    <div class="gas-info-container">
+        <h1>Densidad de Gases Comunes</h1>
 
-        <div class="argon-section">
-            <h3>Explicación de la Ecuación</h3>
-            <p>La relación entre las densidades de un líquido y un gas, cuando ocupan volúmenes relacionados, se describe mediante la siguiente ecuación:</p>
-            <div class="argon-formula">
-                <strong>&rho;<sub>líquido</sub> ⋅ V<sub>líquido</sub> = &rho;<sub>gas</sub> ⋅ V<sub>gas</sub></strong>
-            </div>
-            <p>Despejando para encontrar el volumen del gas:</p>
-            <div class="argon-formula">
-                <strong>V<sub>gas</sub> = (&rho;<sub>líquido</sub> ⋅ V<sub>líquido</sub>) / &rho;<sub>gas</sub></strong>
-            </div>
+        <!-- Argón -->
+        <div class="gas-card">
+            <h2>Argón (Ar)</h2>
+            <p class="definition">El argón es un gas noble, incoloro e inodoro, que representa aproximadamente el 0.93% del aire de la atmósfera terrestre. Es conocido por su inercia química, lo que lo hace útil en aplicaciones donde se necesita un ambiente no reactivo.</p>
+            <p class="gas-density">Densidad del Argón líquido: 1395 kg/m³</p>
+            <p class="gas-density">Densidad del Argón gaseoso: 1.784 kg/m³</p>
         </div>
 
-        <div class="argon-section">
-            <h3>Calculadora de Volumen de Gas</h3>
-            <p>Introduce los valores correspondientes para calcular el volumen de gas y convertir 1 kg de líquido de argón a gas:</p>
-
-            <label for="densityLiquid">Densidad del líquido (&rho;<sub>líquido</sub>) en kg/m³:</label>
-            <input type="number" id="densityLiquid" placeholder="Ejemplo: 1000" step="any" required>
-
-            <label for="volumeLiquid">Volumen del líquido (V<sub>líquido</sub>) en m³:</label>
-            <input type="number" id="volumeLiquid" placeholder="Ejemplo: 1" step="any" required>
-
-            <label for="densityGas">Densidad del gas (&rho;<sub>gas</sub>) en kg/m³:</label>
-            <input type="number" id="densityGas" placeholder="Ejemplo: 1.225" step="any" required>
-
-            <button onclick="calculateArgonConversion()">Calcular Volumen de Gas</button>
-
-            <div class="argon-result" id="gasResult"></div>
-            <div class="argon-result" id="argonResult"></div>
+        <!-- Oxígeno -->
+        <div class="gas-card">
+            <h2>Oxígeno (O<sub>2</sub>)</h2>
+            <p class="definition">El oxígeno es un gas esencial para la respiración de la mayoría de los seres vivos. Constituye el 21% del volumen de la atmósfera terrestre y es altamente reactivo, participando en procesos de combustión y oxidación.</p>
+            <p class="gas-density">Densidad del Oxígeno líquido: 1141 kg/m³</p>
+            <p class="gas-density">Densidad del Oxígeno gaseoso: 1.429 kg/m³</p>
         </div>
+
+        <!-- Nitrógeno -->
+        <div class="gas-card">
+            <h2>Nitrógeno (N<sub>2</sub>)</h2>
+            <p class="definition">El nitrógeno es un gas incoloro e inodoro que constituye el 78% del aire de la atmósfera. Es fundamental en la industria química y se utiliza comúnmente como refrigerante en su estado líquido.</p>
+            <p class="gas-density">Densidad del Nitrógeno líquido: 807 kg/m³</p>
+            <p class="gas-density">Densidad del Nitrógeno gaseoso: 1.2506 kg/m³</p>
+        </div>
+
     </div>
-
-    <script>
-        function calculateArgonConversion() {
-            // Obtener valores ingresados por el usuario
-            const densityLiquid = parseFloat(document.getElementById('densityLiquid').value);
-            const volumeLiquid = parseFloat(document.getElementById('volumeLiquid').value);
-            const densityGas = parseFloat(document.getElementById('densityGas').value);
-
-            // Validación de entrada
-            if (isNaN(densityLiquid) || isNaN(volumeLiquid) || isNaN(densityGas) || densityLiquid <= 0 || volumeLiquid <= 0 || densityGas <= 0) {
-                document.getElementById('gasResult').textContent = "Por favor, ingresa valores válidos para todos los campos.";
-                return;
-            }
-
-            // Cálculo del volumen del gas
-            const volumeGas = (densityLiquid * volumeLiquid) / densityGas;
-
-            // Mostrar resultado del volumen de gas
-            document.getElementById('gasResult').textContent = `El volumen del gas es: ${volumeGas.toFixed(3)} m³.`;
-
-            // Datos para el argón
-            const densityArgonLiquid = 1400; // Densidad del argón líquido en kg/m³
-
-            // Cálculo de cuánto gas equivale a 1 kg de argón líquido
-            const volumeLiquidArgon = 1 / densityArgonLiquid; // Volumen de 1 kg de argón líquido en m³
-            const equivalentGasVolume = (densityArgonLiquid * volumeLiquidArgon) / densityGas;
-
-            // Mostrar resultado del volumen de gas equivalente a 1 kg de argón líquido
-            document.getElementById('argonResult').textContent = `1 kg de argón líquido equivale a ${equivalentGasVolume.toFixed(3)} m³ de gas.`;
-        }
-    </script>
 
 </body>
 </html>
