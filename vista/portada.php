@@ -127,10 +127,14 @@
 
         function calculateAtomicMass() {
           
-            const molarMass = parseFloat(document.getElementById('molarMasa').value);
+            
+   
+
+            const molarMass = parseFloat(document.getElementById('molarMasa_info').value);
             const avogadroNumber = 6.02214076e23;
 
             if (isNaN(molarMass) || molarMass <= 0) {
+                console.log(molarMass);
                 document.getElementById('result_atomic').textContent = "Por favor, ingresa una masa molar válida.";
                 return;
             }

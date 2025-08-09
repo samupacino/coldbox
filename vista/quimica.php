@@ -235,7 +235,7 @@
         <p>Introduce la masa molar del elemento (en g/mol) para calcular la masa de un solo átomo en gramos.</p>
         
         <label for="molarMass">Masa molar (g/mol):</label>
-        <input type="number" id="molarMasa" placeholder="Ejemplo: 12.011" step="0.001" value="12.011">
+        <input type="text" id="molarMasa_info" placeholder="Ejemplo: 12.011" step="0.001" value="12.011">
         <button type="button" onclick="calculateAtomicMass()">Calcular</button>
 
         <div class="result_atomi" id="result_atomic"></div>
